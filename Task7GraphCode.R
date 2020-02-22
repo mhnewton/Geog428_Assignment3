@@ -20,9 +20,10 @@ png("./BarGraph.png", width = 8, height = 6, units = "in", res = 300) #create a 
 ggplot(popPlaces, aes(x=Size, fill=Distance)) + #classify x and y, qualitative classes
   geom_bar(position = "dodge") +
   scale_fill_manual(values=c('#E6E600','#A80000', '#267300')) +
-  labs(title = "City size and distance to nearest hospital in British Columbia", x = "City Size", y = "Frequency", caption = "Figure 1: Bargraph of cities in British Columbia and the distance to the nearest hospital") + #label plot, x axis, y axis
+  labs(title = "City size and distance to nearest hospital in British Columbia", x = "City Size", y = "Frequency", 
+       caption = "Figure 1: Bargraph of cities in British Columbia and the distance to the nearest hospital. City populations were classified as\nsmall (≤500),medium (>500 and ≤10,000), and large (>10,000). Distances to the nearest hospital were classified as very close\n(≤1km), close (>1 and ≤10km), and far (>10km).") + #label plot, x axis, y axis
   theme_bw() + #set the theme to classic (removes background and borders etc.)
-  theme(plot.title = element_text(face = "bold", hjust = 0.5), plot.caption = element_text(hjust = 0.5)) #set title to center and bold
+  theme(plot.title = element_text(face = "bold", hjust = 0.5), plot.caption = element_text(hjust = 0)) #set title to center and bold
 dev.off()
 
 #convert hospital distance and population values to log
@@ -40,8 +41,8 @@ ggplot(popPlaces, aes(x=Population, y=NearHospital, color=Distance, shape=Size))
   geom_point(size = 3) + #set point size
   scale_shape_manual(values=c(16,15,17)) + 
   scale_color_manual(values=c('#E6E600','#A80000', '#267300')) +
-  labs(title = "City population vs. distance to nearest hospital in British Columbia", x = "City Population (log)", y = "Distance to Closest Hospital (log(m))", caption = "Figure 2: Scatterplot of cities in British Columbia and the distance to the nearest hospital") + #label plot, x axis, y axis
+  labs(title = "City population vs. distance to nearest hospital in British Columbia", x = "City Population (log)", y = "Distance to Closest Hospital (log(m))", 
+       caption = "Figure 2: Scatterplot of cities in British Columbia and the distance to the nearest hospital. City populations were classified as\nsmall (≤500),medium (>500 and ≤10,000), and large (>10,000). Distances to the nearest hospital were classified as very close\n(≤1km), close (>1 and ≤10km), and far (>10km).") + #label plot, x axis, y axis
   theme_classic() + #set the theme to classic (removes background and borders etc.)
-  theme(plot.title = element_text(face = "bold", hjust = 0.5), plot.caption = element_text(hjust = 0.5)) #set title to center and bold
+  theme(plot.title = element_text(face = "bold", hjust = 0.5), plot.caption = element_text(hjust = 0)) #set title to center and bold
 dev.off()
-
