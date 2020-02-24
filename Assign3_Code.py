@@ -1,4 +1,4 @@
-#make sure to change filepath for creating a new gdb, setting a workplace, importing both the hospital and populated places datasets, and exporting the csv
+#make sure to change filepath 'dataPath' before running program (line 12)
 
 import arcpy as ap
 import pandas as pd
@@ -8,19 +8,22 @@ import pandas as pd
 ap.env.overwriteOutput = True
 print("\n\nStarting Program...")
 
+#Create variabe for filepath
+dataPath = r"D:\School\Geog428\Assign3\Data"
+
 #Create new geodatabase
-ap.management.CreateFileGDB(r"E:\School\Geog428\Assign3", "ScratchAssign3.gdb")
+ap.management.CreateFileGDB(dataPath, "Assign3.gdb")
 print("Created new file geodatabase...")
 
 #set workspace
-gdb = r"E:\School\Geog428\Assign3\ScratchAssign3.gdb"
+gdb = dataPath + r"\Assign3.gdb"
 ap.env.workspace = gdb
 print("Workspace GDB set...")
 
 #Task 2: Import datasets into a newly created geodatabase.
 #Copy shapefiles to feature classes in gdb 
 #Set local variables for Hospitals
-inFeaturesHospital = r"E:\School\Geog428\Assign3\Data\Hospitals\HOSPITALS_point.shp"
+inFeaturesHospital = dataPath + r"\Hospitals\HOSPITALS_point.shp"
 outLocationHospital = gdb
 outFeatureClassNameHospital = 'hospitals'
 
@@ -29,7 +32,7 @@ ap.FeatureClassToFeatureClass_conversion(inFeaturesHospital, outLocationHospital
 print("Copied Hospital Feature Class...")
 
 #Set local variables for Hospitals
-inFeaturesPop = r"E:\School\Geog428\Assign3\Data\Populations\POP_PL_1M_point.shp"
+inFeaturesPop = dataPath + r"\Populations\POP_PL_1M_point.shp"
 outLocationPop = gdb
 outFeatureClassNamePop = 'popPlaces'
 
@@ -216,10 +219,9 @@ with ap.da.UpdateCursor(popPlaces, (nearDist, qualDistHospital)) as cursor:
 
 #export population place to csv
 inTable = popPlaces
-outLocation = r"E:\School\Geog428\Assign3\Data"
 outTable = "popPlaces_Qualitative_Results.csv"
 
-ap.conversion.TableToTable(inTable, outLocation, outTable)
+ap.conversion.TableToTable(inTable, dataPath, outTable)
 
 print("CSV file created...")
 print("Task 7 Complete!")
