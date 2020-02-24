@@ -223,4 +223,4 @@ ap.conversion.TableToTable(inTable, outLocation, outTable)
 
 print("CSV file created...")
 print("Task 7 Complete!")
-#use R code to create graphs based on csv file
+#use R code from GitHub (Task7GraphCode.R) to create graphs based on csv file
